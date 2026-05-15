@@ -29,7 +29,7 @@ vim.pack.add({
         { src = gh("nvim-treesitter/nvim-treesitter") }, -- Parsers
         { src = gh("neovim/nvim-lspconfig")           }, -- LSP Configuration tools
         { src = gh("rafamadriz/friendly-snippets")    }, -- Snippets
-        { src = gh("Saghen/blink.cmp")                }, -- Autocomplete
+        -- { src = gh("Saghen/blink.cmp")                }, -- Autocomplete
         { src = gh("windwp/nvim-autopairs")           }, -- Autoclose parenthesis and braces
         { src = gh("numToStr/Comment.nvim")           }, -- Smart comments
         { src = gh("mbbill/undotree")                 }, -- Branching Undoo
@@ -45,7 +45,7 @@ load_config("plenary")
 
 -- Core editor tooling
 load_config("treesitter")
-load_config("blink")
+-- load_config("blink")
 load_config("autopairs")
 load_config("comment")
 load_config("undotree")
