@@ -10,6 +10,9 @@
 -- Remove the swap file
 vim.opt.swapfile = false
 
+-- Force enable of editor config
+vim.g.editorconfig = true
+
 -- Columns and numbers
 vim.opt.number = true         -- line number
 vim.opt.relativenumber = true -- relative line numbers
@@ -37,10 +40,10 @@ vim.opt.hlsearch = false  -- highlight search matches
 vim.opt.incsearch = true  -- show matches as you type
 
 -- Visual Options
-vim.opt.signcolumn = "yes"  -- always show a sign column
-vim.opt.colorcolumn = "100" -- show a column at 100 position chars
-vim.opt.showmatch = true    -- highlights matching brackets
-vim.o.termguicolors = true  -- More colors
+vim.opt.signcolumn = "yes"   -- always show a sign column
+vim.opt.colorcolumn = "100"  -- show a column at 100 position chars
+vim.opt.showmatch = true     -- highlights matching brackets
+vim.opt.termguicolors = true -- More colors
 --vim.opt.cmdheight = 1     -- single line command line
 
 -- Print characters
