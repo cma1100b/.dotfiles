@@ -1,3 +1,4 @@
+-- SPDX-License-Identifier: MIT
 --[[
         Oil
         Replaces NTRW as the file explorer

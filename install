@@ -78,6 +78,8 @@ nf_cnfg()
                 wget -q "$url" -O "/tmp/${font}.zip"
                 unzip -q -o -d $fontsd "/tmp/${font}.zip"
                 rm "/tmp/${font}.zip"
+
+                fc-cache -f -v
         fi
 
         step "$font Nerd Font Installed"

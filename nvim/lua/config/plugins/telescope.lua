@@ -1,6 +1,7 @@
+-- SPDX-License-Identifier: MIT
 --[[
-        Telescope
-        Fuzzy finder tool
+        Telescope.
+        Fuzzy finder.
 --]]
 
 local builtin = require('telescope.builtin')
@@ -13,7 +14,8 @@ vim.keymap.set('n', '<leader>fh', builtin.help_tags, { desc = 'Telescope help ta
 vim.keymap.set('n', '<leader>fG', builtin.git_files, { desc = "Git Files" })
 
 -- Need LSP to work correctly
-vim.keymap.set('n', '<leader>fs', builtin.lsp_document_symbols, { noremap = true, silent = true })
-vim.keymap.set('n', '<leader>fd', builtin.lsp_definitions, { noremap = true, silent = true })
-vim.keymap.set('n', '<leader>fr', builtin.lsp_references, { noremap = true, silent = true })
-vim.keymap.set('n', '<leader>fi', builtin.lsp_implementations, { noremap = true, silent = true })
+vim.keymap.set('n', '<leader>fs', builtin.lsp_document_symbols, { desc = "Document symbols" })
+vim.keymap.set('n', '<leader>fd', builtin.lsp_definitions, { desc = "Definitions" })
+vim.keymap.set('n', '<leader>fr', builtin.lsp_references, { desc = "References" })
+vim.keymap.set('n', '<leader>fi', builtin.lsp_implementations, { desc = "Declarations" })
+

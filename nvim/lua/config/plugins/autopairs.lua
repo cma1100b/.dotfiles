@@ -1,3 +1,4 @@
+-- SPDX-License-Identifier: MIT
 --[[
         Autopairs
         Automatic brace and parenthesis close

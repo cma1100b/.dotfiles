@@ -1,7 +1,13 @@
+-- SPDX-License-Identifier: MIT
 --[[
         Harpoon
         Quick jump between buffers.
+
+        > Never search with your eyes.
+        Harpoon Man. 2021
 --]]
+
+local async = require("plenary.async")
 
 local mark = require("harpoon.mark")
 local ui = require("harpoon.ui")

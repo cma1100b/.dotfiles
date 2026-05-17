@@ -1,4 +1,6 @@
+-- SPDX-License-Identifier: MIT
 --[[
+        Comment
         Smart comment
 --]]
 
