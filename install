@@ -1,0 +1,135 @@
+#!/bin/bash
+# SPDX-License-Identifier: MIT
+
+DIR="$(dirname -- "$(readlink -f -- "$0"; )"; )"
+CNGF="$HOME/.config"
+FONTSD="$HOME/.local/share/fonts"
+
+CNT=1
+
+STEP=${1:-"all"}
+
+###############################################################################
+
+RED='\e[1;31m'
+GREEN='\e[1;32m'
+BLUE='\e[1;34m'
+NC='\e[0m'
+
+entry() {
+        echo -e "${CNT}. ${BLUE}${1}${NC}"
+        CNT=$((CNT+1))
+}
+
+step() {
+        printf "  - %s\n" "$1"
+}
+
+error() {
+        echo -e "${RED}  - ERROR ${1}${NC}"
+}
+
+###############################################################################
+
+zsh_cnfg()
+{
+        entry "ZSH"
+        if command -v zsh &> /dev/null
+        then
+                step "ZSH located"
+                # Get Oh MyZshell
+                if [[ ! -d ${HOME}/.oh-my-zsh ]]
+                then
+                        step "Installing OhMyZsh"
+                        sh -c "$(wget https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh -O -)"
+                fi
+                step "OhMyZsh installed"
+
+                if [[ ! $(grep "powerlevel10k" ${HOME}/.zshrc) ]]
+                then
+                        step "Installing powerlevel10k plugin"
+                        git clone --depth=1 https://github.com/romkatv/powerlevel10k.git "${ZSH_CUSTOM:-$HOME/.oh-my-zsh/custom}/themes/powerlevel10k"
+                fi
+                step "Powerlevel10k installed"
+        else
+                error "ZSH not installed"
+                return
+        fi
+
+
+}
+
+nf_cnfg()
+{
+        local font="0xProto"
+        local version="v3.4.0"
+        local repo="https://github.com/ryanoasis/nerd-fonts/releases/download"
+        local url="${repo}/${version}/${font}.zip"
+        local fontsd="${HOME}/.local/share/fonts"
+
+        entry "Nerd Font: $font"
+
+        local fontcnt=$(find "$fontsd" -name "*${font}*" | wc -l)
+        if [[ "$fontcnt" -ne "9" ]]
+        then
+                step "$font Nerd Font not Installed"
+                step "Insatlling"
+
+                wget -q "$url" -O "/tmp/${font}.zip"
+                unzip -q -o -d $fontsd "/tmp/${font}.zip"
+                rm "/tmp/${font}.zip"
+        fi
+
+        step "$font Nerd Font Installed"
+}
+
+nvim_cnfg()
+{
+        NI="${CNGF}/nvim"
+
+        entry "NVIM"
+        if command -v nvim &> /dev/null
+        then
+                step "NVIM Installed"
+
+                # If there was a .config/nvim
+                if [[ ! -L $NI ]] && [[ -d $NI ]]
+                then
+                        step "Backing up previous configuration"
+                        mv $NI "${NI}.old"
+                fi
+
+                step "Linking configurations"
+                ln -s "${CNFG}/nvim" "$DIR/nvim"
+        else
+                error "NVIM not Installed"
+        fi
+}
+
+all()
+{
+        nf_cnfg
+        zsh_cnfg
+}
+
+echo -e "${GREEN}Verifying system${NC}"
+case $STEP in
+        "all")
+                all
+                ;;
+        "font")
+                nf_cnfg
+                ;;
+        "zsh")
+                echo -e "${RED}WARNING${NC}"
+                echo "The zshell plugins included need a nerd font"
+                echo "Install with \"$0 font\""
+                zsh_cnfg
+                ;;
+        *)
+                error "Invalid"; exit 1
+                ;;
+esac
+echo -e "${GREEN}Done${NC}"
+exit 0
+
