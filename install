@@ -102,7 +102,7 @@ nvim_cnfg()
                 fi
 
                 step "Linking configurations"
-                ln -s "${CNFG}/nvim" "$DIR/nvim"
+                ln -s "$DIR/nvim" "$NI"
         else
                 error "NVIM not Installed"
         fi
@@ -112,6 +112,7 @@ all()
 {
         nf_cnfg
         zsh_cnfg
+        nvim_cnfg
 }
 
 echo -e "${GREEN}Verifying system${NC}"
@@ -127,6 +128,9 @@ case $STEP in
                 echo "The zshell plugins included need a nerd font"
                 echo "Install with \"$0 font\""
                 zsh_cnfg
+                ;;
+        "nvim")
+                nvim_cnfg
                 ;;
         *)
                 error "Invalid"; exit 1
