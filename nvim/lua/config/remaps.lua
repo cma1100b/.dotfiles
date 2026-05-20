@@ -11,8 +11,8 @@ vim.keymap.set("n", "n", "nzzzv", { desc = "Next search result (centered)" })
 vim.keymap.set("n", "N", "Nzzzv", { desc = "Previous search result (centered)" })
 
 -- Splits
-vim.keymap.set("n", "<C-m>", "<cmd>split<CR>", { desc = "Horizontal Split" })
-vim.keymap.set("n", "<C-g>", "<cmd>vsplit<CR>", { desc = "Vertical Split" })
+vim.keymap.set("n", "<C-y>", "<cmd>split<CR>", { desc = "Horizontal Split" })
+vim.keymap.set("n", "<C-u>", "<cmd>vsplit<CR>", { desc = "Vertical Split" })
 -- Splits navigation
 vim.keymap.set("n", "<C-h>", "<C-w>h", { desc = "Move to left window" })
 vim.keymap.set("n", "<C-j>", "<C-w>j", { desc = "Move to bottom window" })
