@@ -4,6 +4,12 @@
         Cool colorscheme
 --]]
 
+vim.pack.add {
+        'https://github.con/rebelot/kanagawa.nvim'
+}
+
+require('kanagawa')
+
 -- Activate Colorscheme
 vim.cmd("colorscheme kanagawa")
 

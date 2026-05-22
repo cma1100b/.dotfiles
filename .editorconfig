@@ -12,8 +12,4 @@ max_line_length = 100
 
 [{Makefile,**/Makefile,*.mk}]
 indent_style = tab
-indent_size = 8
-
-[*.py]
-indent_size = 4
 

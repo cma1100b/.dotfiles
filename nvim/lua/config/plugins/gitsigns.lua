@@ -4,7 +4,17 @@
         Git diff simbols embeded on buffers
 --]]
 
-local gitsigns = require('gitsigns')
+vim.pack.add {
+        'https://github.com/lewis6991/gitsigns.nvim'
+}
 
-gitsigns.setup({})
+require('gitsigns').setup {
+        signs = {
+                add = { text = '+' },          ---@diagnostic disable-line: missing-fields
+                change = { text = '~' },       ---@diagnostic disable-line: missing-fields
+                delete = { text = '_' },       ---@diagnostic disable-line: missing-fields
+                topdelete = { text = '‾' },    ---@diagnostic disable-line: missing-fields
+                changedelete = { text = '~' }, ---@diagnostic disable-line: missing-fields
+        }
+}
 

@@ -1,14 +1,19 @@
+-- SPDX-License-Identifier: MIT
 --[[
         Non-Plugin related remaps
 --]]
 
--- Leader Key
-vim.g.mapleader = " "
-vim.g.maplocalleader = " "
-
 -- Keep cursor in middle when searching
 vim.keymap.set("n", "n", "nzzzv", { desc = "Next search result (centered)" })
 vim.keymap.set("n", "N", "Nzzzv", { desc = "Previous search result (centered)" })
+
+vim.keymap.set('n', '<leader>q', vim.diagnostic.setloclist, { desc = 'Open diagnostic [Q]uickfix list' })
+
+-- Navigation. Dissable arrows.
+vim.keymap.set('n', '<left>', '<cmd>echo "Use h to move!!"<CR>')
+vim.keymap.set('n', '<right>', '<cmd>echo "Use l to move!!"<CR>')
+vim.keymap.set('n', '<up>', '<cmd>echo "Use k to move!!"<CR>')
+vim.keymap.set('n', '<down>', '<cmd>echo "Use j to move!!"<CR>')
 
 -- Splits
 vim.keymap.set("n", "<C-y>", "<cmd>split<CR>", { desc = "Horizontal Split" })
@@ -31,8 +36,9 @@ vim.keymap.set("v", "<A-j>", ":m '>+1<CR>gv=gv", { desc = "Move selection down" 
 vim.keymap.set("v", "<A-k>", ":m '<-2<CR>gv=gv", { desc = "Move selection up" })
 
 -- Terminal mode control
-vim.keymap.set("t", "<ESC>", "<C-\\><C-n>", { desc = "Map Esc to exit terminal mode" })
+vim.keymap.set('t', '<Esc><Esc>', '<C-\\><C-n>', { desc = 'Exit terminal mode' })
 
 -- Indent (keeps selection after indent)
 vim.keymap.set("v", "<", "<gv", { desc = "Indent left and reselect" })
 vim.keymap.set("v", ">", ">gv", { desc = "Indent right and reselect" })
+

@@ -4,11 +4,14 @@
         Automatic brace and parenthesis close
 --]]
 
-local autopairs = require("nvim-autopairs")
+vim.pack.add {
+        'https://github.com/windwp/nvim-autopairs'
+}
 
-autopairs.setup({
+require('nvim-autopairs').setup {
         check_ts = true, -- Use treesitter
         fast_wrap = {},
-})
+}
 
--- local cmp_autopairs = require("nvim-autopairs.completion.cmp")
+-- local cmp_autopairs = require('nvim-autopairs.completion.cmp')
+

@@ -2,70 +2,118 @@
 --[[
         Plugins download and configuration.
 
-        `pack` handles downloading and setting up each plugin, just add the
-        correct url.
-        If the plugin requires more configurartion create a lua file with the
-        configuration file under the `plugins` directory and call `load_config`
-        (or require) to load it.
-
-        Remaining:
+        TODO:
                 - blink.cmp: autocomplete
                 - alpha:     greeater//frontpage
-                - lualine:   cool status bar
                 - nvim-tree: tree file explorer for alpha
                 - which-key: to show help for all the plugins
 --]]
 
-local gh = function(x) return "https://github.com/" .. x end
+local function run_build(name, cmd, cwd)
+        local result = vim.system(cmd, { cwd = cwd }):wait()
+        if result.code ~= 0 then
+                local stderr = result.stderr or ''
+                local stdout = result.stdout or ''
+                local output = stderr ~= '' and stderr or stdout
 
-local function load_config(name)
-        local status, _ = pcall(require, "config.plugins." .. name)
-        if not status then
-                print("Warning: No configuration file for " .. name)
+                if output == '' then
+                        output = 'No output from build command.'
+                end
+
+                vim.notify(
+                        ('Build failed for %s:\n%s'):format(name, output),
+                        vim.log.levels.ERROR
+                )
         end
 end
 
-vim.pack.add({
-        { src = gh("nvim-lua/plenary.nvim")               }, -- Common lua functions
-        { src = gh("nvim-treesitter/nvim-treesitter")     }, -- Parsers
-        { src = gh("nvim-telescope/telescope.nvim")       }, -- Fuzzy finder
-        { src = gh("neovim/nvim-lspconfig")               }, -- LSP Configuration tools
-        { src = gh("rafamadriz/friendly-snippets")        }, -- Snippets
-        { src = gh("windwp/nvim-autopairs")               }, -- Autoclose parenthesis and braces
-        { src = gh("numToStr/Comment.nvim")               }, -- Smart comments
-        { src = gh("mbbill/undotree")                     }, -- Branching Undoo
-        { src = gh("stevearc/oil.nvim")                   }, -- File explorer as buffer
-        { src = gh("ThePrimeagen/harpoon")                }, -- Quick file jump
-        { src = gh("NOSDuco/remote-sshfs.nvim")           }, -- Remote file explorer
-        { src = gh("rebelot/kanagawa.nvim")               }, -- colorscheme
-        { src = gh("lewis6991/gitsigns.nvim")             }, -- Git changes on files
-        { src = gh("lukas-reineke/indent-blankline.nvim") }, -- Indentation visulizer
-        { src = gh("nvim-tree/nvim-web-devicons")         }, -- Icons
-        { src = gh("nvim-lualine/lualine.nvim")           }, -- Better looking file line
-        -- { src = gh("Saghen/blink.cmp")                }, -- Autocomplete
+-- This autocommand runs after a plugin is installed or updated and
+-- runs the appropriate build command for that plugin if necessary.
+--
+-- See `:help vim.pack-events`
+vim.api.nvim_create_autocmd('PackChanged', {
+        callback = function(ev)
+                local name = ev.data.spec.name
+                local kind = ev.data.kind
+                if kind ~= 'install' and kind ~= 'update' then return end
+
+                if
+                        name == 'telescope-fzf-native.nvim'
+                        and vim.fn.executable 'make' == 1
+                then
+                        run_build(name, { 'make' }, ev.data.path)
+                        return
+                end
+
+                if name == 'LuaSnip' then
+                        if
+                                vim.fn.has 'win32' ~= 1
+                                and vim.fn.executable 'make' == 1
+                        then
+                                run_build(
+                                        name,
+                                        { 'make', 'install_jsregexp' },
+                                        ev.data.path
+                                )
+                        end
+                        return
+                end
+
+                if name == 'nvim-treesitter' then
+                        if not ev.data.active then
+                                vim.cmd.packadd 'nvim-treesitter'
+                        end
+                        vim.cmd 'TSUpdate'
+                        return
+                end
+        end,
 })
 
--- Core editor tooling
-load_config("treesitter")
+---Because most plugins are hosted on GitHub, you can use the helper
+---function to have less repetition in the following sections.
+---@param repo string
+---@return string
+local function gh(repo) return 'https://github.com/' .. repo end
+
+-- Tries to load a plugin configuration file
+local function load(name)
+        local status, _ = pcall(require, 'config.plugins.' .. name)
+        if not status then
+                print('Warning: Configuration failed for ' .. name)
+        end
+end
+
+vim.pack.add {
+        -- { src = gh('nvim-treesitter/nvim-treesitter')     }, -- Parsers
+        -- { src = gh('neovim/nvim-lspconfig')               }, -- LSP Configuration tools
+        { src = gh 'mbbill/undotree' }, -- Branching Undoo
+        { src = gh 'NOSDuco/remote-sshfs.nvim' }, -- Remote file explorer
+}
 
 -- Text editor tools
-load_config("autopairs")
-load_config("comment")
+-- load('autopairs')
+load 'minipairs'
+-- load('comment')
+load 'minicoment'
+load 'guessindent'
 
 -- File navigation
-load_config("telescope")
-load_config("harpoon")
-load_config("undotree")
-load_config("oil")
+load 'telescope'
+load 'harpoon'
+load 'undotree'
+load 'oil'
 
 -- Remote
-load_config("remote")
+load 'remote'
 
 -- Git integrations
-load_config("gitsigns")
+load 'gitsigns'
 
 -- Visuals
-load_config("indent")
-load_config("kanagawa")
-load_config("lualine")
-
+-- load('tokyonight')
+load 'kanagawa'
+-- load('lualine')
+load 'miniline'
+load 'wichkey'
+load 'todo'
+-- load('ibl')

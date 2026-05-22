@@ -4,5 +4,9 @@
         Smart comment
 --]]
 
-local coment = require("Comment")
-coment.setup()
+vim.pack.add {
+        'https://github.com/numToStr/Comment.nvim'
+}
+
+require('Comment').setup {}
+
