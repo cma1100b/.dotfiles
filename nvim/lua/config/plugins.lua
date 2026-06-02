@@ -83,13 +83,6 @@ local function load(name)
         end
 end
 
-vim.pack.add {
-        -- { src = gh('nvim-treesitter/nvim-treesitter')     }, -- Parsers
-        -- { src = gh('neovim/nvim-lspconfig')               }, -- LSP Configuration tools
-        { src = gh 'mbbill/undotree' }, -- Branching Undoo
-        { src = gh 'NOSDuco/remote-sshfs.nvim' }, -- Remote file explorer
-}
-
 -- Text editor tools
 -- load('autopairs')
 load 'minipairs'
@@ -114,6 +107,6 @@ load 'gitsigns'
 load 'kanagawa'
 -- load('lualine')
 load 'miniline'
-load 'wichkey'
+load 'whichkey'
 load 'todo'
 -- load('ibl')

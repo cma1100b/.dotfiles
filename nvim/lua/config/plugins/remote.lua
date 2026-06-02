@@ -2,13 +2,15 @@
         Remote file explorer
 --]]
 
-local remote = require('remote-sshfs')
+vim.pack.add {
+        'https://github.com/NOSDuco/remote-sshfs.nvim'
+}
 
-remote.setup({
+require('remote-sshfs').setup {
         ssh_configs = {
                 os.getenv("HOME") .. "/.ssh/config",
         },
-})
+}
 
 local api = require('remote-sshfs.api')
 

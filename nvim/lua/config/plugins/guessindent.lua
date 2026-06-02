@@ -5,7 +5,7 @@
 --]]
 
 vim.pack.add {
-        'https://github/NMAC427/guess-indent.nvim'
+        'https://github.com/NMAC427/guess-indent.nvim'
 }
 
 require('guess-indent').setup {}

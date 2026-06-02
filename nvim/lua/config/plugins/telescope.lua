@@ -7,7 +7,7 @@
 vim.pack.add {
         'https://github.com/nvim-lua/plenary.nvim',
         'https://github.con/nvim-telescope/telescope.nvim',
-        'https://github.con/nvim-telescope/telescope-ui-select.nvim',
+        'https://github.com/nvim-telescope/telescope-ui-select.nvim',
 }
 
 pcall(require('telescope').load_extension, 'fzf')
@@ -31,7 +31,7 @@ vim.keymap.set(
         'n',
         '<leader>fo',
         builtin.oldfiles,
-        { desc = '[F]ind Old Files' }
+        { desc = '[F]ind [O]ld Files' }
 )
 vim.keymap.set(
         'n',
