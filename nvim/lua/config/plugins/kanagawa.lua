@@ -5,7 +5,7 @@
 --]]
 
 vim.pack.add {
-        'https://github.con/rebelot/kanagawa.nvim'
+        'https://github.com/rebelot/kanagawa.nvim'
 }
 
 require('kanagawa')

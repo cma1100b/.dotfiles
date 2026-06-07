@@ -1,3 +1,4 @@
+-- SPDX-License-Identifier: MIT
 --[[
         LSP
         Language Server Protocol

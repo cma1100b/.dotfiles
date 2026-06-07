@@ -1,3 +1,4 @@
+-- SPDX-License-Identifier: MIT
 --[[
         Common remaps
 
@@ -16,6 +17,8 @@ vim.g.maplocalleader = ' '
 
 -- Force enable of editor config
 vim.g.editorconfig = true
+
+vim.g.have_nerd_font = true
 
 -- Remove the swap file
 vim.opt.swapfile = false

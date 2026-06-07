@@ -84,9 +84,9 @@ local function load(name)
 end
 
 -- Text editor tools
--- load('autopairs')
+-- load 'autopairs'
 load 'minipairs'
--- load('comment')
+-- load 'comment'
 load 'minicoment'
 load 'guessindent'
 
@@ -103,10 +103,12 @@ load 'remote'
 load 'gitsigns'
 
 -- Visuals
--- load('tokyonight')
+load 'fidget'
+-- load 'tokyonight'
 load 'kanagawa'
--- load('lualine')
+-- load 'lualine'
 load 'miniline'
 load 'whichkey'
 load 'todo'
--- load('ibl')
+-- load 'ibl'
+

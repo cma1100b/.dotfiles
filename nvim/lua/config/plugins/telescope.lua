@@ -6,7 +6,7 @@
 
 vim.pack.add {
         'https://github.com/nvim-lua/plenary.nvim',
-        'https://github.con/nvim-telescope/telescope.nvim',
+        'https://github.com/nvim-telescope/telescope.nvim',
         'https://github.com/nvim-telescope/telescope-ui-select.nvim',
 }
 
@@ -25,7 +25,7 @@ vim.keymap.set(
         'n',
         '<leader>fg',
         builtin.live_grep,
-        { desc = '[F] live [G]rep' }
+        { desc = '[F]ind in live [G]rep' }
 )
 vim.keymap.set(
         'n',
@@ -43,7 +43,7 @@ vim.keymap.set(
         'n',
         '<leader>fh',
         builtin.help_tags,
-        { desc = '[F]ind help tags' }
+        { desc = '[F]ind [H]elp tags' }
 )
 vim.keymap.set(
         'n',

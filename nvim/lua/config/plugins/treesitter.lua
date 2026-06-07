@@ -1,3 +1,4 @@
+-- SPDX-License-Identifier: MIT
 --[[
         Treesitter
         Parser library and tool for syntax highlight and LSP integration
@@ -6,19 +7,21 @@
         Ensures that the usefull parsers are installed on start up
 --]]
 
-local treesitter = require("nvim-treesitter.config")
+vim.pack.add {
+        'https://github.com/nvim-treesitter/nvim-treesitter'
+}
 
-treesitter.setup({
+require('nvim-treesitter.config').setup {
         -- Usefull parsers (for me)
         ensure_installed = {
-                "c",
-                "bash",
-                "make",
-                "markdown",
-                "markdown_inline",
-                "lua",
-                "vim",
-                "vimdoc",
+                'c',
+                'bash',
+                'make',
+                'markdown',
+                'markdown_inline',
+                'lua',
+                'vim',
+                'vimdoc',
         },
         -- So that ensure installed works
         sync_install = false,
@@ -33,9 +36,9 @@ treesitter.setup({
         indent  = {
                 enable = true,
         },
-})
+}
 
 -- Folding: requires treesitter available at runtime; safe fallback if not
-vim.opt.foldmethod = "expr"                          -- use expression for folding
-vim.opt.foldexpr = "v:lua.vim.treesitter.foldexpr()" -- use treesitter for folding
+vim.opt.foldmethod = 'expr'                          -- use expression for folding
+vim.opt.foldexpr = 'v:lua.vim.treesitter.foldexpr()' -- use treesitter for folding
 vim.opt.foldlevel = 99                               -- start with all folds open
