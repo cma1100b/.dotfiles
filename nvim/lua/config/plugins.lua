@@ -4,9 +4,7 @@
 
         TODO:
                 - blink.cmp: autocomplete
-                - alpha:     greeater//frontpage
                 - nvim-tree: tree file explorer for alpha
-                - which-key: to show help for all the plugins
 --]]
 
 local function run_build(name, cmd, cwd)
@@ -87,7 +85,7 @@ end
 -- load 'autopairs'
 load 'minipairs'
 -- load 'comment'
-load 'minicoment'
+load 'minicomment'
 load 'guessindent'
 
 -- File navigation
@@ -104,6 +102,7 @@ load 'gitsigns'
 
 -- Visuals
 load 'fidget'
+-- load 'alpha'
 -- load 'tokyonight'
 load 'kanagawa'
 -- load 'lualine'
