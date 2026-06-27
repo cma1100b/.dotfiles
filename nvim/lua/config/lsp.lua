@@ -14,6 +14,7 @@ local function load_server(name)
 end
 
 load_server("clangd")
+load_server("lua_ls")
 
 -- When an LSP tries to load this function will run
 vim.api.nvim_create_autocmd("LspAttach", {

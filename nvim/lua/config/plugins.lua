@@ -87,6 +87,7 @@ load 'minipairs'
 -- load 'comment'
 load 'minicomment'
 load 'guessindent'
+load 'blink'
 
 -- File navigation
 load 'telescope'
