@@ -81,6 +81,11 @@ local function load(name)
         end
 end
 
+-- LSP
+load 'fidget'
+load 'mason'
+load 'conform'
+
 -- Text editor tools
 -- load 'autopairs'
 load 'minipairs'
