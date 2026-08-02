@@ -102,6 +102,7 @@ load 'remote'
 load 'gitsigns'
 
 -- Visuals
+load 'treesitter'
 load 'fidget'
 -- load 'alpha'
 -- load 'tokyonight'
